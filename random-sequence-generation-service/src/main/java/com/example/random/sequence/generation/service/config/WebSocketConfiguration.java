@@ -1,4 +1,4 @@
-package com.example.randomsequencegenerationservice.config;
+package com.example.random.sequence.generation.service.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

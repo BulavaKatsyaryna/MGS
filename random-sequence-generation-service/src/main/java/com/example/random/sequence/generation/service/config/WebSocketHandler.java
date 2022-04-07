@@ -1,4 +1,4 @@
-package com.example.randomsequencegenerationservice.config;
+package com.example.random.sequence.generation.service.config;
 
 import org.springframework.web.socket.BinaryMessage;
 import org.springframework.web.socket.TextMessage;
