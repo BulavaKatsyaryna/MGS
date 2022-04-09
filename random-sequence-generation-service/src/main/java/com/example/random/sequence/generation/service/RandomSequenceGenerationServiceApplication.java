@@ -9,5 +9,4 @@ public class RandomSequenceGenerationServiceApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(RandomSequenceGenerationServiceApplication.class, args);
 	}
-
 }

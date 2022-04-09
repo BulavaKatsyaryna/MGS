@@ -1,4 +1,4 @@
-package com.example.random.sequence.generation.service.config;
+package com.example.random.sequence.generation.service.handler;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

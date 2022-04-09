@@ -1,5 +1,6 @@
 package com.example.random.sequence.generation.service.config;
 
+import com.example.random.sequence.generation.service.handler.WebSocketHandler;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.socket.config.annotation.EnableWebSocket;

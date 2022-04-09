@@ -1,0 +1,3 @@
+com\example\random\sequence\generation\service\RandomSequenceGenerationServiceApplication.class
+com\example\random\sequence\generation\service\config\WebSocketConfiguration.class
+com\example\random\sequence\generation\service\handler\WebSocketHandler.class
