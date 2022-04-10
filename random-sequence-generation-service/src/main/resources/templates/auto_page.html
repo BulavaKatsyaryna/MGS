@@ -3,9 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <title>Auto page</title>
+    <style>
+        #array-output {
+            text-align: left;
+            width: 50%;
+            padding: 1em;
+            border: 1px solid #070707;
+        }
+    </style>
 </head>
 <body>
 <h2>You entered:
 <span th:text="${length}"></span></h2>
+
+<div class="output">
+<div id="array-output" class="array-output"></div>
+</div>
+
 </body>
 </html>
