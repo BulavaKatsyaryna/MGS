@@ -37,16 +37,16 @@ public class AutoPageController {
     }
 
     @GetMapping("/auto")
-    public String auto(@RequestParam(required = false) int length, Model model) {
+    public String auto(@RequestParam(required = false) int length, Model model){
 
         randomArrayCertainLength.clear();
 
-        for (int i = 0; i < length; i++) {
-            int randomIndex = random.nextInt(naturalNumbersSequence.size());
-            var randomElement = naturalNumbersSequence.get(randomIndex);
-            log.info("RANDOM ARRAY OF SELECTED LENGTH: " + randomElement);
-            randomArrayCertainLength.add(randomElement);
-        }
+            for (int i = 0; i < length; i++) {
+                int randomIndex = random.nextInt(naturalNumbersSequence.size());
+                var randomElement = naturalNumbersSequence.get(randomIndex);
+                log.info("RANDOM ARRAY OF SELECTED LENGTH: " + randomElement);
+                randomArrayCertainLength.add(randomElement);
+            }
 
         log.info("ENTERED ARRAY LENGTH: " + length);
         log.info("ARRAY OUTPUT: " + randomArrayCertainLength);

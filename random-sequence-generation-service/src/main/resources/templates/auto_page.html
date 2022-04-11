@@ -14,12 +14,18 @@
             <th>Array:</th>
         </tr>
         <th:block th:each="order : ${randomArrayCertainLength}">
-<!--            <tr>-->
-                <td th:text="${order}"></td>
-<!--            </tr>-->
+            <td th:text="${order}"></td>
         </th:block>
     </table>
 </div>
+
+<script type="text/javascript">
+
+    setTimeout(function () {
+        window.location.reload(1);
+    }, 10000)
+
+</script>
 
 </body>
 </html>
