@@ -16,7 +16,7 @@ import java.util.Random;
 @Controller
 public class AutoPageController {
     private static final Logger log = LoggerFactory.getLogger(AutoPageController.class);
-    private static final List<Object> naturalNumbersSequence = new LinkedList<>();
+    private static final List<Object> naturalNumbersSequenceForAutoPage = new LinkedList<>();
 
     Random random = new SecureRandom();
     private final List<Object> randomArrayCertainLength = new ArrayList<>();
@@ -32,24 +32,24 @@ public class AutoPageController {
                     break;
                 }
             }
-            if (bool) naturalNumbersSequence.add(i);
+            if (bool) naturalNumbersSequenceForAutoPage.add(i);
         }
     }
 
     @GetMapping("/auto")
     public String auto(@RequestParam(required = false) int length, Model model){
 
-        randomArrayCertainLength.clear();
+            randomArrayCertainLength.clear();
 
             for (int i = 0; i < length; i++) {
-                int randomIndex = random.nextInt(naturalNumbersSequence.size());
-                var randomElement = naturalNumbersSequence.get(randomIndex);
+                int randomIndex = random.nextInt(naturalNumbersSequenceForAutoPage.size());
+                var randomElement = naturalNumbersSequenceForAutoPage.get(randomIndex);
                 log.info("RANDOM ARRAY OF SELECTED LENGTH: " + randomElement);
                 randomArrayCertainLength.add(randomElement);
             }
 
         log.info("ENTERED ARRAY LENGTH: " + length);
-        log.info("ARRAY OUTPUT: " + randomArrayCertainLength);
+        log.info("ARRAY OUTPUT ON THE AUTO PAGE: " + randomArrayCertainLength);
         model.addAttribute("length", length);
         model.addAttribute("randomArrayCertainLength", randomArrayCertainLength);
         return "auto_page";
