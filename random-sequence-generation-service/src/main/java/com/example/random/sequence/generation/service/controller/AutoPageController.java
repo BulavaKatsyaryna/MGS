@@ -39,6 +39,8 @@ public class AutoPageController {
     @GetMapping("/auto")
     public String auto(@RequestParam(required = false) int length, Model model) {
 
+        randomArrayCertainLength.clear();
+
         for (int i = 0; i < length; i++) {
             int randomIndex = random.nextInt(naturalNumbersSequence.size());
             var randomElement = naturalNumbersSequence.get(randomIndex);
