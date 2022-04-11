@@ -7,13 +7,16 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.LinkedList;
-import java.util.List;
+import java.security.SecureRandom;
+import java.util.*;
 
 @Controller
 public class AutoPageController {
     private static final Logger log = LoggerFactory.getLogger(AutoPageController.class);
-    private static List<Object> naturalNumbersSequence = new LinkedList<>();
+    private static final List<Object> naturalNumbersSequence = new LinkedList<>();
+
+    Random random = new SecureRandom();
+    private final List<Object> randomArrayCertainLength = new ArrayList<>(naturalNumbersSequence);
 
     static {
 
@@ -31,11 +34,19 @@ public class AutoPageController {
     }
 
     @GetMapping("/auto")
-    public String auto(@RequestParam(required = false) String length, Model model) {
+    public String auto(@RequestParam(required = false) int length, Model model) {
+
+        for (int i = 0; i < length; i++) {
+            int randomIndex = random.nextInt(randomArrayCertainLength.size());
+            var randomElement = randomArrayCertainLength.get(randomIndex);
+            log.info("RANDOM ARRAY OF SELECTED LENGTH: " + randomElement);
+            randomArrayCertainLength.add(randomElement);
+        }
+
         log.info("ENTERED ARRAY LENGTH: " + length);
-        log.info("THE GENERATED ARRAY OF NATURAL NUMBERS: " + naturalNumbersSequence);
+        log.info("ARRAY OUTPUT: " + randomArrayCertainLength);
         model.addAttribute("length", length);
-        model.addAttribute("naturalNumbersSequence", naturalNumbersSequence);
+        model.addAttribute("randomArrayCertainLength", randomArrayCertainLength);
         return "auto_page";
     }
 }
