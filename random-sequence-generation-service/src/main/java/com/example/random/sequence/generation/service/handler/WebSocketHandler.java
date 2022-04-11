@@ -12,8 +12,8 @@ public class WebSocketHandler extends AbstractWebSocketHandler {
     private static final Logger log = LoggerFactory.getLogger(WebSocketHandler.class);
 
     @Override
-    protected void handleTextMessage(WebSocketSession session, TextMessage length) throws IOException {
-        log.info("POSTED MESSAGE: " + length);
-        session.sendMessage(length);
+    protected void handleTextMessage(WebSocketSession session, TextMessage messages) throws IOException {
+        log.info("POSTED MESSAGE: " + messages);
+        session.sendMessage(messages);
     }
 }

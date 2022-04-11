@@ -8,7 +8,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.security.SecureRandom;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Random;
 
 @Controller
 public class AutoPageController {
@@ -16,7 +19,7 @@ public class AutoPageController {
     private static final List<Object> naturalNumbersSequence = new LinkedList<>();
 
     Random random = new SecureRandom();
-    private final List<Object> randomArrayCertainLength = new ArrayList<>(naturalNumbersSequence);
+    private final List<Object> randomArrayCertainLength = new ArrayList<>();
 
     static {
 
@@ -37,8 +40,8 @@ public class AutoPageController {
     public String auto(@RequestParam(required = false) int length, Model model) {
 
         for (int i = 0; i < length; i++) {
-            int randomIndex = random.nextInt(randomArrayCertainLength.size());
-            var randomElement = randomArrayCertainLength.get(randomIndex);
+            int randomIndex = random.nextInt(naturalNumbersSequence.size());
+            var randomElement = naturalNumbersSequence.get(randomIndex);
             log.info("RANDOM ARRAY OF SELECTED LENGTH: " + randomElement);
             randomArrayCertainLength.add(randomElement);
         }
