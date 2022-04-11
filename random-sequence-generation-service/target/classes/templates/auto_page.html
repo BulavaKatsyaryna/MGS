@@ -14,11 +14,24 @@
 </head>
 <body>
 <h2>You entered:
-<span th:text="${length}"></span></h2>
+    <span th:text="${length}"></span></h2>
 
 <div class="output">
-<div id="array-output" class="array-output"></div>
+    <div id="array-output" class="array-output"></div>
+<!--    <span th:each="${naturalNumbersArray}"></span>-->
 </div>
+
+<script>
+    const messageWindow = document.getElementById("array-output");
+
+    function sendMessage(output) {
+        addMessageToWindow("Sent Message: " + output);
+    }
+
+    function addMessageToWindow(output) {
+        messageWindow.innerHTML += `<div>${output}</div>`
+    }
+</script>
 
 </body>
 </html>

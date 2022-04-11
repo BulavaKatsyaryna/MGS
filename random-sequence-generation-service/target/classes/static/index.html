@@ -10,12 +10,22 @@
     If you want to get 5 random sequences - press the GENERATE button.</h1>
 <form action="/auto" method="get">
     <input type="text" name="length" placeholder="Set the length of the array...">
-    <input type="submit" value="AUTO">
+    <button onclick="auto()">AUTO</button>
 </form>
+
 
 <form action="/generate" method="get">
     <button>GENERATE</button>
 </form>
+
+<script src="js/script.js">
+    function auto() {
+        let length = document.querySelector('#length');
+        let result = document.querySelector('.result');
+
+    }
+
+</script>
 
 </body>
 </html>
