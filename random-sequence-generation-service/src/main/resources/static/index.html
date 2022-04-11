@@ -4,17 +4,22 @@
     <meta charset="UTF-8">
     <title>Test task for MGS</title>
 </head>
+<style>
+    #length {
+        width: 300px;
+    }
+</style>
 <body>
 <h1>I was created to generate sequences of numbers. <br>
     If you want to specify the length of the sequence, enter it in the line below and the AUTO button. <br>
     If you want to get 5 random sequences - press the GENERATE button.</h1>
 <form action="/auto" method="get">
-    <input type="text" name="length" placeholder="Set the length of the array...">
+    <input type="number" min="10" max="100" name="length" id="length" placeholder="Set the length of the array..." required>
     <button onclick="auto()">AUTO</button>
 </form>
 
-
 <form action="/generate" method="get">
+    <br style="line-height: 3px;" />
     <button>GENERATE</button>
 </form>
 
