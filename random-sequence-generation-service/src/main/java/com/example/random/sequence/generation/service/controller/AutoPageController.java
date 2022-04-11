@@ -1,5 +1,6 @@
 package com.example.random.sequence.generation.service.controller;
 
+import com.example.random.sequence.generation.service.array.IterationNaturalNumbers;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -9,44 +10,29 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.security.SecureRandom;
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
 
 @Controller
-public class AutoPageController {
+public class AutoPageController extends IterationNaturalNumbers {
     private static final Logger log = LoggerFactory.getLogger(AutoPageController.class);
-    private static final List<Object> naturalNumbersSequenceForAutoPage = new LinkedList<>();
 
     Random random = new SecureRandom();
     private final List<Object> randomArrayCertainLength = new ArrayList<>();
 
-    static {
-
-        for (int i = 2; i < 543; i++) {
-            boolean bool = true;
-            int x = (int) Math.sqrt(i);
-            for (int j = 2; j <= x; j++) {
-                if ((i % j) == 0) {
-                    bool = false;
-                    break;
-                }
-            }
-            if (bool) naturalNumbersSequenceForAutoPage.add(i);
-        }
-    }
-
     @GetMapping("/auto")
-    public String auto(@RequestParam(required = false) int length, Model model){
+    public String auto(@RequestParam(required = false) int length, Model model) {
 
-            randomArrayCertainLength.clear();
+        naturalNumberSelection();
 
-            for (int i = 0; i < length; i++) {
-                int randomIndex = random.nextInt(naturalNumbersSequenceForAutoPage.size());
-                var randomElement = naturalNumbersSequenceForAutoPage.get(randomIndex);
-                log.info("RANDOM ARRAY OF SELECTED LENGTH: " + randomElement);
-                randomArrayCertainLength.add(randomElement);
-            }
+        randomArrayCertainLength.clear();
+
+        for (int i = 0; i < length; i++) {
+            int randomIndex = random.nextInt(naturalNumbersSequence.size());
+            var randomElement = naturalNumbersSequence.get(randomIndex);
+            log.info("RANDOM ARRAY OF SELECTED LENGTH: " + randomElement);
+            randomArrayCertainLength.add(randomElement);
+        }
 
         log.info("ENTERED ARRAY LENGTH: " + length);
         log.info("ARRAY OUTPUT ON THE AUTO PAGE: " + randomArrayCertainLength);
