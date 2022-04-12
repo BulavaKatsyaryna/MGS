@@ -21,6 +21,11 @@ public class GeneratePageController {
         inn.choiceSixNaturalNumbers();
 
         log.info("ARRAY OUTPUT ON THE GENERATION PAGE: " + inn.getArrayWithSixNumbers());
+        log.info("ARRAY OUTPUT ON THE GENERATION PAGE: " + inn.getArrayWithSixNumbers2());
+        log.info("ARRAY OUTPUT ON THE GENERATION PAGE: " + inn.getArrayWithSixNumbers3());
+        log.info("ARRAY OUTPUT ON THE GENERATION PAGE: " + inn.getArrayWithSixNumbers4());
+        log.info("ARRAY OUTPUT ON THE GENERATION PAGE: " + inn.getArrayWithSixNumbers5());
+
         model.addAttribute("length", length);
         model.addAttribute("arrayWithSixNumbers", inn.getArrayWithSixNumbers());
         model.addAttribute("arrayWithSixNumbers2", inn.getArrayWithSixNumbers2());

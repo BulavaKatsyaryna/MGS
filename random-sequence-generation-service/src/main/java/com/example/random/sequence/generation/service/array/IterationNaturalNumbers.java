@@ -1,6 +1,5 @@
 package com.example.random.sequence.generation.service.array;
 
-import com.example.random.sequence.generation.service.controller.AutoPageController;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -16,7 +15,7 @@ import java.util.Random;
 @NoArgsConstructor
 @AllArgsConstructor
 public class IterationNaturalNumbers {
-    private static final Logger log = LoggerFactory.getLogger(AutoPageController.class);
+    private static final Logger log = LoggerFactory.getLogger(IterationNaturalNumbers.class);
     protected static final List<Object> naturalNumbersSequence = new LinkedList<>();
     private final List<Object> arrayWithSixNumbers = new ArrayList<>();
     private final List<Object> arrayWithSixNumbers2 = new ArrayList<>();
@@ -49,30 +48,22 @@ public class IterationNaturalNumbers {
         arrayWithSixNumbers4.clear();
         arrayWithSixNumbers5.clear();
 
-        for (int i = 0; i < 6; i++) {
+        for (int i = 0; i < 30; i++) {
             int randomIndex = random.nextInt(naturalNumbersSequence.size());
             var randomElement = naturalNumbersSequence.get(randomIndex);
-            arrayWithSixNumbers.add(randomElement);
-        }
-        for (int i = 0; i < 6; i++) {
-            int randomIndex = random.nextInt(naturalNumbersSequence.size());
-            var randomElement = naturalNumbersSequence.get(randomIndex);
-            arrayWithSixNumbers2.add(randomElement);
-        }
-        for (int i = 0; i < 6; i++) {
-            int randomIndex = random.nextInt(naturalNumbersSequence.size());
-            var randomElement = naturalNumbersSequence.get(randomIndex);
-            arrayWithSixNumbers3.add(randomElement);
-        }
-        for (int i = 0; i < 6; i++) {
-            int randomIndex = random.nextInt(naturalNumbersSequence.size());
-            var randomElement = naturalNumbersSequence.get(randomIndex);
-            arrayWithSixNumbers4.add(randomElement);
-        }
-        for (int i = 0; i < 6; i++) {
-            int randomIndex = random.nextInt(naturalNumbersSequence.size());
-            var randomElement = naturalNumbersSequence.get(randomIndex);
-            arrayWithSixNumbers5.add(randomElement);
+            if (arrayWithSixNumbers.size() <= 5) {
+                arrayWithSixNumbers.add(randomElement);
+            } else if (arrayWithSixNumbers2.size() <= 5) {
+                arrayWithSixNumbers2.add(randomElement);
+            } else if (arrayWithSixNumbers3.size() <= 5) {
+                arrayWithSixNumbers3.add(randomElement);
+            } else if (arrayWithSixNumbers4.size() <= 5) {
+                arrayWithSixNumbers4.add(randomElement);
+            } else if (arrayWithSixNumbers5.size() <= 5) {
+                arrayWithSixNumbers5.add(randomElement);
+            } else {
+                log.info("Arrays are full");
+            }
         }
     }
 }
