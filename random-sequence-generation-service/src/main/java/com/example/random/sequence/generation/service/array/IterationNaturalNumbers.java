@@ -19,7 +19,13 @@ public class IterationNaturalNumbers {
     private static final Logger log = LoggerFactory.getLogger(AutoPageController.class);
     protected static final List<Object> naturalNumbersSequence = new LinkedList<>();
     private final List<Object> arrayWithSixNumbers = new ArrayList<>();
+    private final List<Object> arrayWithSixNumbers2 = new ArrayList<>();
+    private final List<Object> arrayWithSixNumbers3 = new ArrayList<>();
+    private final List<Object> arrayWithSixNumbers4 = new ArrayList<>();
+    private final List<Object> arrayWithSixNumbers5 = new ArrayList<>();
+
     Random random = new Random();
+
 
     public void naturalNumberSelection() {
 
@@ -36,14 +42,37 @@ public class IterationNaturalNumbers {
         }
     }
 
-    public void ChoiceSixNaturalNumbers() {
+    public void choiceSixNaturalNumbers() {
         arrayWithSixNumbers.clear();
+        arrayWithSixNumbers2.clear();
+        arrayWithSixNumbers3.clear();
+        arrayWithSixNumbers4.clear();
+        arrayWithSixNumbers5.clear();
 
         for (int i = 0; i < 6; i++) {
             int randomIndex = random.nextInt(naturalNumbersSequence.size());
             var randomElement = naturalNumbersSequence.get(randomIndex);
-            log.info("RANDOM ARRAY OF SELECTED LENGTH: " + randomElement);
             arrayWithSixNumbers.add(randomElement);
+        }
+        for (int i = 0; i < 6; i++) {
+            int randomIndex = random.nextInt(naturalNumbersSequence.size());
+            var randomElement = naturalNumbersSequence.get(randomIndex);
+            arrayWithSixNumbers2.add(randomElement);
+        }
+        for (int i = 0; i < 6; i++) {
+            int randomIndex = random.nextInt(naturalNumbersSequence.size());
+            var randomElement = naturalNumbersSequence.get(randomIndex);
+            arrayWithSixNumbers3.add(randomElement);
+        }
+        for (int i = 0; i < 6; i++) {
+            int randomIndex = random.nextInt(naturalNumbersSequence.size());
+            var randomElement = naturalNumbersSequence.get(randomIndex);
+            arrayWithSixNumbers4.add(randomElement);
+        }
+        for (int i = 0; i < 6; i++) {
+            int randomIndex = random.nextInt(naturalNumbersSequence.size());
+            var randomElement = naturalNumbersSequence.get(randomIndex);
+            arrayWithSixNumbers5.add(randomElement);
         }
     }
 }

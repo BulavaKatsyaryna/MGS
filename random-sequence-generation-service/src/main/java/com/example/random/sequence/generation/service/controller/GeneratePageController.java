@@ -18,11 +18,15 @@ public class GeneratePageController {
     public String generate(@RequestParam(required = false) Integer length, Model model) {
 
         inn.naturalNumberSelection();
-        inn.ChoiceSixNaturalNumbers();
+        inn.choiceSixNaturalNumbers();
 
         log.info("ARRAY OUTPUT ON THE GENERATION PAGE: " + inn.getArrayWithSixNumbers());
         model.addAttribute("length", length);
         model.addAttribute("arrayWithSixNumbers", inn.getArrayWithSixNumbers());
+        model.addAttribute("arrayWithSixNumbers2", inn.getArrayWithSixNumbers2());
+        model.addAttribute("arrayWithSixNumbers3", inn.getArrayWithSixNumbers3());
+        model.addAttribute("arrayWithSixNumbers4", inn.getArrayWithSixNumbers4());
+        model.addAttribute("arrayWithSixNumbers5", inn.getArrayWithSixNumbers5());
 
         return "generate_page";
     }
