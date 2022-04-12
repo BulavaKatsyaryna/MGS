@@ -16,4 +16,5 @@ Test task for MGS
 Последовательность чисел отображается в таблице.
 • Обмен данными с сервером осуществлять в формате JSON.
 
-## Вместо WebSocket использовала Thymeleaf.
+## random-sequence-generation-service-with-websocket - реализация через WebSocket.
+## random-sequence-generation-service - реализация через Thymeleaf.
