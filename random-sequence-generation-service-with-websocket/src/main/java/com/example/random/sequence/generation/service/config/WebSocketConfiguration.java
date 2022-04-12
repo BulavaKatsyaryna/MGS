@@ -14,4 +14,11 @@ public class WebSocketConfiguration implements WebSocketConfigurer {
     public void registerWebSocketHandlers(WebSocketHandlerRegistry registry) {
         registry.addHandler(new WebSocketHandler(), "/socket").setAllowedOrigins("*");
     }
+
+//    @Bean
+//    public ServletServerContainerFactoryBean createWebSocketContainer() {
+//        ServletServerContainerFactoryBean container = new ServletServerContainerFactoryBean();
+//        container.setMaxBinaryMessageBufferSize(1024000);
+//        return container;
+//    }
 }

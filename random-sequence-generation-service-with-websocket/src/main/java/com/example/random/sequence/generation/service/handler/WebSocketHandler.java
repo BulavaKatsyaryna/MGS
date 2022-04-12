@@ -2,6 +2,7 @@ package com.example.random.sequence.generation.service.handler;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.web.socket.BinaryMessage;
 import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.AbstractWebSocketHandler;
@@ -12,8 +13,14 @@ public class WebSocketHandler extends AbstractWebSocketHandler {
     private static final Logger log = LoggerFactory.getLogger(WebSocketHandler.class);
 
     @Override
-    protected void handleTextMessage(WebSocketSession session, TextMessage messages) throws IOException {
-        log.info("POSTED MESSAGE: " + messages);
-        session.sendMessage(messages);
+    protected void handleTextMessage(WebSocketSession session, TextMessage message) throws IOException {
+        log.info("POSTED MESSAGE: " + message);
+        session.sendMessage(message);
+    }
+
+    @Override
+    protected void handleBinaryMessage(WebSocketSession session, BinaryMessage message) throws IOException {
+        log.info("NEW BINARY MESSAGE RECEIVED" + message);
+        session.sendMessage(message);
     }
 }
