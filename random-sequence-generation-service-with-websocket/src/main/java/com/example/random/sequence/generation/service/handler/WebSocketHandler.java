@@ -13,14 +13,14 @@ public class WebSocketHandler extends AbstractWebSocketHandler {
     private static final Logger log = LoggerFactory.getLogger(WebSocketHandler.class);
 
     @Override
-    protected void handleTextMessage(WebSocketSession session, TextMessage message) throws IOException {
-        log.info("POSTED MESSAGE: " + message);
-        session.sendMessage(message);
+    protected void handleTextMessage(WebSocketSession session, TextMessage length) throws IOException {
+        log.info("POSTED MESSAGE: " + length);
+        session.sendMessage(length);
     }
 
     @Override
-    protected void handleBinaryMessage(WebSocketSession session, BinaryMessage message) throws IOException {
-        log.info("NEW BINARY MESSAGE RECEIVED" + message);
-        session.sendMessage(message);
+    protected void handleBinaryMessage(WebSocketSession session, BinaryMessage length) throws IOException {
+        log.info("NEW BINARY MESSAGE RECEIVED" + length);
+        session.sendMessage(length);
     }
 }

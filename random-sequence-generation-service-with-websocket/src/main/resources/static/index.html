@@ -10,49 +10,57 @@
     }
 </style>
 <body>
-<h1>I was created to generate sequences of numbers. <br>
+
+<h2>I was created to generate sequences of numbers. <br>
     If you want to specify the length of the sequence, enter it in the line below and the AUTO button. <br>
-    If you want to get 5 random sequences - press the GENERATE button.</h1>
-<form action="/auto" method="get">
-    <input type="number" min="10" max="100" name="length" id="length"
-           placeholder="Set the length of the array..." required>
-    <button id="auto">AUTO</button>
-<!--    <button onclick="auto()">AUTO</button>-->
-</form>
+    If you want to get 5 random sequences - press the GENERATE button.</h2>
 
-<form action="/generate" method="get">
-    <br style="line-height: 3px;"/>
-    <button id="GENERATE">GENERATE</button>
-</form>
-
-<!--<ul>-->
-<!--    <li><a href="./auto_page.html">Echo</a></li>-->
-<!--    <li><a href="./generate_page.html">Snake</a></li>-->
-<!--</ul>-->
-
+<div class="container">
+    <div id="messages" class="messages"></div>
+    <div class="input-fields">
+        <input type="number" min="10" max="100" name="length" id="length"
+               placeholder="Set the length of the array..." required>
+        <button id="auto">AUTO</button>
+        <button id="generate">GENERATE</button>
+    </div>
+</div>
 </body>
+
+<!--<script src="/script.js">-->
 
 <script>
     const messageWindow = document.getElementById("messages");
 
-    const sendButton = document.getElementById("auto");
+    const sendAutoButton = document.getElementById("auto");
+    const sendGenerateButton = document.getElementById("generate");
     const messageInput = document.getElementById("length");
 
     const socket = new WebSocket("ws://localhost:8080/socket");
     socket.binaryType = "arraybuffer";
 
-    sendButton.onclick = function (event) {
+    socket.onopen = function (event) {
+        addMessageToWindow("Connected to webSocket....");
+    };
+
+    socket.onmessage = function (event) {
+        addMessageToWindow(`Generated Sequence : ${event.data}`);
+    };
+
+    sendAutoButton.onclick = function (event) {
         sendMessage(messageInput.value);
         messageInput.value = "";
     };
 
-    function sendMessage(message) {
-        socket.send(message);
-        addMessageToWindow("Sent Message: " + message);
+    sendGenerateButton.onclick = function (event) {
+    };
+
+    function sendMessage(length) {
+        socket.send(length);
+        addMessageToWindow("You have set the length of the array :" + length);
     }
 
-    function addMessageToWindow(message) {
-        messageWindow.innerHTML += `<div>${message}</div>`
+    function addMessageToWindow(length) {
+        messageWindow.innerHTML += `<div>${length}</div>`
     }
 
 </script>
