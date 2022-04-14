@@ -14,9 +14,9 @@ public class SchedulerConfig {
 
     SimpMessagingTemplate template;
 
-    @Scheduled(fixedDelay = 2000)
-    public void sendAdhocMessages() {
-        log.info("OUTPUT AUTOGENERATE");
-        template.convertAndSend("/topic/auto", new MessageResponse("AutoGeneration: "));
-    }
+//    @Scheduled(fixedDelay = 2000)
+//    public void sendAdhocMessages() {
+//        log.info("OUTPUT AUTOGENERATE");
+//        template.convertAndSend("/topic/auto", new MessageResponse("AutoGeneration: "));
+//    }
 }

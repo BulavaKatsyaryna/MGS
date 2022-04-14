@@ -47,6 +47,6 @@ public class AutoPageController extends IterationNaturalNumbers {
                 .map(String::valueOf)
                 .collect(Collectors.joining(" ", "[", "]"));
 
-        return new MessageResponse("Random collection output: " + getRandomArrayCertainLengthResult());
+        return new MessageResponse("Random collection output: " + randomArrayCertainLengthResult);
     }
 }

@@ -3,19 +3,18 @@ package com.example.random.sequence.generation.service.model;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
 
+@Slf4j
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class IterationNaturalNumbers {
-    private static final Logger log = LoggerFactory.getLogger(IterationNaturalNumbers.class);
     public static final List<Object> naturalNumbersSequence = new LinkedList<>();
     private final List<Object> arrayWithSixNumbers = new ArrayList<>();
     private final List<Object> arrayWithSixNumbers2 = new ArrayList<>();
@@ -23,8 +22,7 @@ public class IterationNaturalNumbers {
     private final List<Object> arrayWithSixNumbers4 = new ArrayList<>();
     private final List<Object> arrayWithSixNumbers5 = new ArrayList<>();
 
-    Random random = new Random();
-
+    Random rand = new Random();
 
     public void naturalNumberSelection() {
 
@@ -49,7 +47,7 @@ public class IterationNaturalNumbers {
         arrayWithSixNumbers5.clear();
 
         for (int i = 0; i < 30; i++) {
-            int randomIndex = random.nextInt(naturalNumbersSequence.size());
+            int randomIndex = rand.nextInt(naturalNumbersSequence.size());
             var randomElement = naturalNumbersSequence.get(randomIndex);
             if (arrayWithSixNumbers.size() <= 5) {
                 arrayWithSixNumbers.add(randomElement);
@@ -62,7 +60,7 @@ public class IterationNaturalNumbers {
             } else if (arrayWithSixNumbers5.size() <= 5) {
                 arrayWithSixNumbers5.add(randomElement);
             } else {
-                log.info("Arrays are full");
+                log.info("ARRAYS IS FULL");
             }
         }
     }

@@ -4,13 +4,6 @@
     <meta charset="UTF-8">
     <title>Test task for MGS</title>
 
-    <link href="/webjars/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/main.css" rel="stylesheet">
-
-    <script src="/webjars/jquery/jquery.min.js"></script>
-    <script src="/webjars/sockjs-client/sockjs.min.js"></script>
-    <script src="/webjars/stomp-websocket/stomp.min.js"></script>
-    <script src="/static/js/app.js"></script>
 </head>
 <style>
     #length {
@@ -19,56 +12,85 @@
 </style>
 <body>
 
-<h2>I was created to generate sequences of numbers. <br>
-    If you want to specify the length of the sequence, enter it in the line below and the AUTO button. <br>
-    If you want to get 5 random sequences - press the GENERATE button.</h2>
+<div class="row">
+    <div class="col-md-6">
+        <div class="form-group">
+            <label for="connect">WebSocket connection:</label>
+            <button id="connect" class="btn btn-default" type="submit">Connect</button>
+            <button id="disconnect" class="btn btn-default" type="submit" disabled="disabled">Disconnect
+            </button>
+        </div>
 
-<div class="container">
-    <div id="messages" class="messages"></div>
-    <div class="input-fields">
-        <input type="number" min="10" max="100" name="length" id="length"
-               placeholder="Set the length of the array..." required>
-        <button id="auto">AUTO</button>
-        <button id="generate">GENERATE</button>
+        <h2>I was created to generate sequences of numbers. <br>
+            If you want to specify the length of the sequence, enter it in the line below and the AUTO button. <br>
+            If you want to get 5 random sequences - press the GENERATE button.</h2>
+
+        <div id="main-content" class="container">
+            <div id="messages" class="messages"></div>
+            <div class="input-fields">
+
+                <input type="number" min="10" max="100" name="length" id="length"
+                       placeholder="Set the length of the array...">
+                <button id="auto" class="btn btn-default" type="submit">AUTO</button>
+                <button id="generate" class="btn btn-default" type="submit">GENERATE</button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <table id="conversation" class="table table-striped">
+                    <tbody id="info">
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
 </div>
+
 </body>
 
-<script>
-    const messageWindow = document.getElementById("messages");
+<script src="/webjars/jquery/jquery.min.js"></script>
+<script src="/webjars/sockjs-client/sockjs.min.js"></script>
+<script src="/webjars/stomp-websocket/stomp.min.js"></script>
+<script src="/static/app.js">
 
-    const sendAutoButton = document.getElementById("auto");
-    const sendGenerateButton = document.getElementById("generate");
+    // const messageWindow = document.getElementById("messages");
+    //
+    // const sendAutoButton = document.getElementById("auto");
+    // const sendGenerateButton = document.getElementById("generate");
+    //
+    // const messageInput = document.getElementById("length");
 
-    const messageInput = document.getElementById("length");
+    // const socket = new WebSocket("ws://localhost:8080/socket");
+    // socket.binaryType = "arraybuffer";
+    //
+    // socket.onopen = function (event) {
+    //     addMessageToWindow("Connected to webSocket....");
+    // };
 
-    const socket = new WebSocket("ws://localhost:8080/socket");
-    socket.binaryType = "arraybuffer";
+    // socket.onmessage = function (event) {
+    //     addMessageToWindow(`Generated Sequence : ${event.data}`);
+    // };
 
-    socket.onopen = function (event) {
-        addMessageToWindow("Connected to webSocket....");
-    };
+    // sendAutoButton.onclick = function (event) {
+    //     sendMessage(messageInput.value);
+    //     messageInput.value = "";
+    // };
+    //
+    // sendGenerateButton.onclick = function (event) {
+    // };
 
-    socket.onmessage = function (event) {
-        addMessageToWindow(`Generated Sequence : ${event.data}`);
-    };
+    // function sendMessage(length) {
+    //     socket.send(length);
+    //     addMessageToWindow("You have set the length of the array :" + length);
+    // }
 
-    sendAutoButton.onclick = function (event) {
-        sendMessage(messageInput.value);
-        messageInput.value = "";
-    };
+    // function addMessageToWindow(length) {
+    //     messageWindow.innerHTML += `<div>${length}</div>`
+    // }
 
-    sendGenerateButton.onclick = function (event) {
-    };
 
-    function sendMessage(length) {
-        socket.send(length);
-        addMessageToWindow("You have set the length of the array :" + length);
-    }
 
-    function addMessageToWindow(length) {
-        messageWindow.innerHTML += `<div>${length}</div>`
-    }
+
 
 </script>
 </html>
