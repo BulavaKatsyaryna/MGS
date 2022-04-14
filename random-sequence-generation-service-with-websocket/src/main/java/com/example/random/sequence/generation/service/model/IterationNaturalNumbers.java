@@ -16,11 +16,11 @@ import java.util.Random;
 @AllArgsConstructor
 public class IterationNaturalNumbers {
     public static final List<Object> naturalNumbersSequence = new LinkedList<>();
-    private final List<Object> arrayWithSixNumbers = new ArrayList<>();
-    private final List<Object> arrayWithSixNumbers2 = new ArrayList<>();
-    private final List<Object> arrayWithSixNumbers3 = new ArrayList<>();
-    private final List<Object> arrayWithSixNumbers4 = new ArrayList<>();
-    private final List<Object> arrayWithSixNumbers5 = new ArrayList<>();
+    protected final List<Object> arrayWithSixNumbers = new ArrayList<>();
+    protected final List<Object> arrayWithSixNumbers2 = new ArrayList<>();
+    protected final List<Object> arrayWithSixNumbers3 = new ArrayList<>();
+    protected final List<Object> arrayWithSixNumbers4 = new ArrayList<>();
+    protected final List<Object> arrayWithSixNumbers5 = new ArrayList<>();
 
     Random rand = new Random();
 

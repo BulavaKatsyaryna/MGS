@@ -1,17 +1,20 @@
 package com.example.random.sequence.generation.service.controller;
 
 import com.example.random.sequence.generation.service.model.IterationNaturalNumbers;
+import com.example.random.sequence.generation.service.model.MessageResponse;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.ui.Model;
+import org.springframework.messaging.handler.annotation.MessageMapping;
+import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Slf4j
 @NoArgsConstructor
-
 public class GeneratePageController extends IterationNaturalNumbers {
 
-    public void generate(@RequestParam(required = false) Integer length, Model model) {
+    @MessageMapping("/generate")
+    @SendTo("/topic/generate")
+    public MessageResponse generate(@RequestParam(required = false) Integer length) {
 
         naturalNumberSelection();
         choiceSixNaturalNumbers();
@@ -22,12 +25,11 @@ public class GeneratePageController extends IterationNaturalNumbers {
         log.info("ARRAY OUTPUT ON THE GENERATION PAGE: " + getArrayWithSixNumbers4());
         log.info("ARRAY OUTPUT ON THE GENERATION PAGE: " + getArrayWithSixNumbers5());
 
-        model.addAttribute("length", length);
-        model.addAttribute("arrayWithSixNumbers", getArrayWithSixNumbers());
-        model.addAttribute("arrayWithSixNumbers2", getArrayWithSixNumbers2());
-        model.addAttribute("arrayWithSixNumbers3", getArrayWithSixNumbers3());
-        model.addAttribute("arrayWithSixNumbers4", getArrayWithSixNumbers4());
-        model.addAttribute("arrayWithSixNumbers5", getArrayWithSixNumbers5());
-
+        return new MessageResponse("Five random sequences generated: "
+                + arrayWithSixNumbers + " "
+                + arrayWithSixNumbers2 + " "
+                + arrayWithSixNumbers3 + " "
+                + arrayWithSixNumbers4 + " "
+                + arrayWithSixNumbers5 + " ");
     }
 }
