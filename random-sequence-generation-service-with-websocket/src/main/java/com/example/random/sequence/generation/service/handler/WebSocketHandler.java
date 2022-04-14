@@ -1,26 +1,41 @@
 package com.example.random.sequence.generation.service.handler;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.web.socket.BinaryMessage;
+import com.example.random.sequence.generation.service.controller.AutoPageController;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.AbstractWebSocketHandler;
 
 import java.io.IOException;
+import java.util.stream.Collectors;
 
+@Slf4j
 public class WebSocketHandler extends AbstractWebSocketHandler {
-    private static final Logger log = LoggerFactory.getLogger(WebSocketHandler.class);
 
     @Override
     protected void handleTextMessage(WebSocketSession session, TextMessage length) throws IOException {
-        log.info("POSTED MESSAGE: " + length);
+        log.info("LENGTH OF THE ARRAY IS INTRODUCED : " + length);
         session.sendMessage(length);
     }
 
     @Override
-    protected void handleBinaryMessage(WebSocketSession session, BinaryMessage length) throws IOException {
-        log.info("NEW BINARY MESSAGE RECEIVED" + length);
-        session.sendMessage(length);
+    public void afterConnectionEstablished(WebSocketSession session) throws Exception {
+        session.sendMessage(new TextMessage("You are now connected to the server. This is the first message."));
     }
+
+    public void outputArray(WebSocketSession session, int length, AutoPageController autoPageController) throws IOException {
+        autoPageController.auto(length);
+        String result = autoPageController.randomArrayCertainLength.stream()
+                .map(String::valueOf)
+                .collect(Collectors.joining("-", "{", "}"));
+        session.sendMessage(new TextMessage(result));
+    }
+
+
+//    @Override
+//    public void handleMessage(WebSocketSession session, WebSocketMessage<?> message) throws Exception {
+//        session.sendMessage (new TextMessage ("!!!!!!!!!!!" .getBytes ()));
+//
+//    }
+
 }

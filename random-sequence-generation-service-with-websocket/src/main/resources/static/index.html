@@ -26,13 +26,12 @@
 </div>
 </body>
 
-<!--<script src="/script.js">-->
-
 <script>
     const messageWindow = document.getElementById("messages");
 
     const sendAutoButton = document.getElementById("auto");
     const sendGenerateButton = document.getElementById("generate");
+
     const messageInput = document.getElementById("length");
 
     const socket = new WebSocket("ws://localhost:8080/socket");

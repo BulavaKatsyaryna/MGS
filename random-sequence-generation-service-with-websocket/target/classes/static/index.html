@@ -1,3 +1,4 @@
+<%@page import="com.example.random.sequence.generation.service.handler.WebSocketHandler"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -23,22 +24,22 @@
         <button id="auto">AUTO</button>
         <button id="generate">GENERATE</button>
     </div>
+    <h2>Square of 3 = <%= new WebSocketHandler().square(3) %></h2>
 </div>
 </body>
-
-<!--<script src="/script.js">-->
 
 <script>
     const messageWindow = document.getElementById("messages");
 
     const sendAutoButton = document.getElementById("auto");
     const sendGenerateButton = document.getElementById("generate");
+
     const messageInput = document.getElementById("length");
 
     const socket = new WebSocket("ws://localhost:8080/socket");
     socket.binaryType = "arraybuffer";
 
-    socket.onopen = function (event) {
+        socket.onopen = function (event) {
         addMessageToWindow("Connected to webSocket....");
     };
 
