@@ -4,6 +4,7 @@ import com.example.random.sequence.generation.service.model.IterationNaturalNumb
 import com.example.random.sequence.generation.service.model.MessageResponse;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.messaging.handler.annotation.MessageMapping;
@@ -17,8 +18,9 @@ import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
 
-@Slf4j
+@EqualsAndHashCode(callSuper = true)
 @Data
+@Slf4j
 @NoArgsConstructor
 @AllArgsConstructor
 @Controller
