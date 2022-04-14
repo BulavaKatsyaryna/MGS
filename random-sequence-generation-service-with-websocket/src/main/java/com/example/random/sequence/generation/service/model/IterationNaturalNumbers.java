@@ -1,4 +1,4 @@
-package com.example.random.sequence.generation.service.array;
+package com.example.random.sequence.generation.service.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -16,7 +16,7 @@ import java.util.Random;
 @AllArgsConstructor
 public class IterationNaturalNumbers {
     private static final Logger log = LoggerFactory.getLogger(IterationNaturalNumbers.class);
-    protected static final List<Object> naturalNumbersSequence = new LinkedList<>();
+    public static final List<Object> naturalNumbersSequence = new LinkedList<>();
     private final List<Object> arrayWithSixNumbers = new ArrayList<>();
     private final List<Object> arrayWithSixNumbers2 = new ArrayList<>();
     private final List<Object> arrayWithSixNumbers3 = new ArrayList<>();

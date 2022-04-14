@@ -1,13 +1,16 @@
 package com.example.random.sequence.generation.service.controller;
 
-import com.example.random.sequence.generation.service.array.IterationNaturalNumbers;
+import com.example.random.sequence.generation.service.model.IterationNaturalNumbers;
+import com.example.random.sequence.generation.service.model.MessageResponse;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.messaging.handler.annotation.MessageMapping;
+import org.springframework.messaging.handler.annotation.SendTo;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import javax.servlet.http.HttpServletRequest;
 import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,13 +21,16 @@ import java.util.stream.Collectors;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Controller
 public class AutoPageController extends IterationNaturalNumbers {
 
     Random random = new SecureRandom();
-    public final List<Object> randomArrayCertainLength = new ArrayList<>();
-    private Object randomArrayCertainLengthResult;
+    protected final List<Object> randomArrayCertainLength = new ArrayList<>();
+    protected Object randomArrayCertainLengthResult;
 
-    public void auto(@RequestParam(required = false) int length) {
+    @MessageMapping("/auto")
+    @SendTo("/topic/auto")
+    public MessageResponse auto(@RequestParam(required = false) int length) {
 
         naturalNumberSelection();
 
@@ -39,10 +45,8 @@ public class AutoPageController extends IterationNaturalNumbers {
 
         randomArrayCertainLengthResult = randomArrayCertainLength.stream()
                 .map(String::valueOf)
-                .collect(Collectors.joining("-", "{", "}"));
-    }
+                .collect(Collectors.joining(" ", "[", "]"));
 
-    public void request(HttpServletRequest request) {
-        request.setAttribute("randomArrayCertainLength", randomArrayCertainLengthResult);
+        return new MessageResponse("Random collection output: " + getRandomArrayCertainLengthResult());
     }
 }

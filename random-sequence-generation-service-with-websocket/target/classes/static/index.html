@@ -1,9 +1,16 @@
-<%@page import="com.example.random.sequence.generation.service.handler.WebSocketHandler"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Test task for MGS</title>
+
+    <link href="/webjars/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/main.css" rel="stylesheet">
+
+    <script src="/webjars/jquery/jquery.min.js"></script>
+    <script src="/webjars/sockjs-client/sockjs.min.js"></script>
+    <script src="/webjars/stomp-websocket/stomp.min.js"></script>
+    <script src="/static/js/app.js"></script>
 </head>
 <style>
     #length {
@@ -24,7 +31,6 @@
         <button id="auto">AUTO</button>
         <button id="generate">GENERATE</button>
     </div>
-    <h2>Square of 3 = <%= new WebSocketHandler().square(3) %></h2>
 </div>
 </body>
 
@@ -39,7 +45,7 @@
     const socket = new WebSocket("ws://localhost:8080/socket");
     socket.binaryType = "arraybuffer";
 
-        socket.onopen = function (event) {
+    socket.onopen = function (event) {
         addMessageToWindow("Connected to webSocket....");
     };
 
