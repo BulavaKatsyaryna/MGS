@@ -50,16 +50,26 @@
     };
 
     sendAutoButton.onclick = function (event) {
-        sendMessage(messageInput.value);
+        sendAutoMessage(messageInput.value);
         messageInput.value = "";
     };
 
     sendGenerateButton.onclick = function (event) {
+        sendGenerateMessage();
     };
 
-    function sendMessage(length) {
+    function sendGenerateMessage() {
+        addMessageToWindow("Generated array output: ")
+        let json = JSON.stringify({
+            "content": this.content
+        });
+
+        socket.send(json);
+    }
+
+    function sendAutoMessage(length) {
         socket.send(length);
-        addMessageToWindow("You have set the length of the array :" + length);
+        addMessageToWindow("You have set the length of the array: " + length);
         let json = JSON.stringify({
             "content": this.content
         });
