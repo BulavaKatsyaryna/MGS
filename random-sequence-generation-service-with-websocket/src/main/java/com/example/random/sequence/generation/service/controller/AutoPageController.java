@@ -1,16 +1,16 @@
 package com.example.random.sequence.generation.service.controller;
 
 import com.example.random.sequence.generation.service.model.IterationNaturalNumbers;
-import com.example.random.sequence.generation.service.model.MessageResponse;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import net.minidev.json.JSONArray;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.ui.Model;
 
 import java.security.SecureRandom;
 import java.util.ArrayList;
@@ -27,12 +27,13 @@ import java.util.stream.Collectors;
 public class AutoPageController extends IterationNaturalNumbers {
 
     Random random = new SecureRandom();
-    protected final List<Object> randomArrayCertainLength = new ArrayList<>();
-    protected Object randomArrayCertainLengthResult;
+    public final List<Object> randomArrayCertainLength = new ArrayList<>();
+    public String randomArrayCertainLengthResult;
+    JSONArray autoPageJSON = new JSONArray();
 
     @MessageMapping("/auto")
     @SendTo("/topic/auto")
-    public MessageResponse auto(@RequestParam(required = false) int length) {
+    public void auto (int length, Model model) {
 
         naturalNumberSelection();
 
@@ -49,6 +50,7 @@ public class AutoPageController extends IterationNaturalNumbers {
                 .map(String::valueOf)
                 .collect(Collectors.joining(" ", "[", "]"));
 
-        return new MessageResponse("Random collection output: " + randomArrayCertainLengthResult);
+        autoPageJSON.add(randomArrayCertainLengthResult);
+        model.addAttribute("autoPageJSON", autoPageJSON);
     }
 }

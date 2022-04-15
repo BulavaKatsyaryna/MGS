@@ -19,7 +19,7 @@ public class WebSocketHandler extends AbstractWebSocketHandler {
 
     @Override
     protected void handleBinaryMessage(WebSocketSession session, BinaryMessage message) throws IOException {
-        System.out.println("New Binary Message Received");
+        log.info("NEW BINARY MESSAGE RECEIVED");
         session.sendMessage(message);
     }
 }

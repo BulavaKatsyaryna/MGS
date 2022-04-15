@@ -22,6 +22,7 @@
         <input type="number" min="10" max="100" name="length" id="length"
                placeholder="Set the length of the array..." required>
         <button id="auto">AUTO</button>
+<!--        <button onclick="auto()">AUTO</button>-->
         <button id="generate">GENERATE</button>
     </div>
 </div>
@@ -29,7 +30,6 @@
 </body>
 
 <script>
-    // <script src="/static/app.js">
 
     const messageWindow = document.getElementById("messages");
 
@@ -45,12 +45,13 @@
         addMessageToWindow("Connected to webSocket....");
     };
 
-    socket.onmessage = function (event) {
-        addMessageToWindow(`Generated Sequence : ${event.data}`);
+    socket.onmessage = function(evt) {
+        let json = JSON.parse(evt.data);
+        console.log(json);
     };
 
     sendAutoButton.onclick = function (event) {
-        sendAutoMessage(messageInput.value);
+        sendAutoMessageLength(messageInput.value);
         messageInput.value = "";
     };
 
@@ -59,27 +60,51 @@
     };
 
     function sendGenerateMessage() {
-        addMessageToWindow("Generated array output: ")
+        addMessageToWindow("Generated array output: " + this.content)
         let json = JSON.stringify({
             "content": this.content
         });
-
         socket.send(json);
     }
 
-    function sendAutoMessage(length) {
+    function sendAutoMessageLength(length) {
         socket.send(length);
-        addMessageToWindow("You have set the length of the array: " + length);
+        addMessageToWindow("Entered number: " + length);
+        sendAutoMessage();
+    }
+
+    function sendAutoMessage() {
+        addMessageToWindow("Auto array output: "  + this.content);
         let json = JSON.stringify({
             "content": this.content
         });
-
         socket.send(json);
+        repeat();
     }
 
     function addMessageToWindow(length) {
         messageWindow.innerHTML += `<div>${length}</div>`
     }
 
+    function repeat() {
+        let repeat = setInterval(sendAutoMessage, 10000);
+        let end = 100000;
+        if (end)
+            setTimeout(function() {
+                clearInterval(repeat);
+                }, end);
+    }
+
+    // function auto() {
+    //     socket.send(JSON.stringify({
+    //         command: 'auto',
+    //         params: {
+    //             type: 'randomArrayCertainLengthResult'
+    //         }
+    //     }));
+    // }
+
 </script>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 </html>
